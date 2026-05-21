@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#ff9a9e">
+  <title>Hỏi Nhau Đi ❤️</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    :root {
+      --rose:    #ff6b9d;
+      --rose-dk: #c44569;
+      --card-shadow: 0 20px 60px rgba(196,69,105,.18), 0 4px 20px rgba(0,0,0,.07);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: linear-gradient(155deg, #ff9a9e 0%, #fad0c4 45%, #ffecd2 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 16px 32px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ── Floating hearts ── */
+    #hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .heart {
+      position: absolute; bottom: -60px; opacity: 0;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { opacity: 0;   transform: translateY(0)      rotate(0deg);   }
+      10%  { opacity: .55; }
+      85%  { opacity: .25; }
+      100% { opacity: 0;   transform: translateY(-105vh) rotate(380deg); }
+    }
+
+    /* ── Layout ── */
+    .container {
+      width: 100%; max-width: 430px; z-index: 1;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 2px;
+    }
+    .header-title {
+      font-size: 1.25rem; font-weight: 800; color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,.15); letter-spacing: -.3px;
+    }
+    .icon-btn {
+      background: rgba(255,255,255,.28); border: none; backdrop-filter: blur(8px);
+      width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+      font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+      transition: transform .15s;
+    }
+    .icon-btn:active { transform: scale(.88); }
+
+    /* ── Progress ── */
+    .progress-wrap { display: flex; flex-direction: column; gap: 5px; }
+    .progress-track {
+      background: rgba(255,255,255,.35); border-radius: 50px;
+      height: 10px; overflow: hidden; backdrop-filter: blur(6px);
+    }
+    .progress-fill {
+      height: 100%; border-radius: 50px;
+      background: linear-gradient(90deg, var(--rose), var(--rose-dk));
+      transition: width .55s cubic-bezier(.4,0,.2,1);
+    }
+    .progress-label {
+      text-align: center; color: #fff; font-size: .82rem;
+      font-weight: 600; text-shadow: 0 1px 4px rgba(0,0,0,.18);
+    }
+
+    /* ── Card ── */
+    .card {
+      background: #fff; border-radius: 28px;
+      padding: 26px 22px 22px; box-shadow: var(--card-shadow);
+      min-height: 260px; display: flex; flex-direction: column; gap: 18px;
+      transition: opacity .28s ease, transform .28s ease;
+    }
+    .card.hide { opacity: 0; transform: translateY(-18px); }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px; border-radius: 50px;
+      font-size: .76rem; font-weight: 700; color: #fff;
+      width: fit-content; letter-spacing: .2px;
+    }
+
+    .question-text {
+      font-size: 1.2rem; line-height: 1.65;
+      color: #2d3436; font-weight: 500; flex: 1;
+    }
+
+    .remaining-label {
+      font-size: .78rem; color: #b2bec3; font-weight: 500;
+    }
+
+    /* ── Buttons ── */
+    .buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn {
+      padding: 17px 10px; border: none; border-radius: 16px;
+      font-size: .95rem; font-weight: 700; cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn:active { transform: scale(.93); }
+    .btn-skip {
+      background: #fff0f5; color: var(--rose-dk);
+      border: 2px solid #fce4ec;
+    }
+    .btn-asked {
+      background: linear-gradient(135deg, var(--rose), var(--rose-dk));
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(196,69,105,.32);
+    }
+    .btn-asked:active { box-shadow: 0 4px 12px rgba(196,69,105,.2); }
+
+    /* ── Done screen ── */
+    .done-screen {
+      background: #fff; border-radius: 28px;
+      padding: 44px 24px; text-align: center;
+      box-shadow: var(--card-shadow); display: none;
+    }
+    .done-screen.show { display: block; }
+    .done-emoji { font-size: 4rem; margin-bottom: 14px; }
+    .done-title { font-size: 1.45rem; font-weight: 800; color: #2d3436; margin-bottom: 8px; }
+    .done-sub   { font-size: .98rem; color: #636e72; line-height: 1.65; margin-bottom: 28px; }
+    .btn-full { width: 100%; padding: 17px; }
+
+    /* ── Bottom sheet modal ── */
+    .overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.38);
+      backdrop-filter: blur(5px); z-index: 200;
+      display: none; align-items: flex-end; justify-content: center;
+    }
+    .overlay.show { display: flex; }
+    .sheet {
+      background: #fff; border-radius: 26px 26px 0 0;
+      padding: 20px 20px 32px; width: 100%; max-width: 430px;
+      animation: sheetUp .28s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes sheetUp {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0);    }
+    }
+    .sheet-handle {
+      width: 40px; height: 4px; background: #e0e0e0;
+      border-radius: 2px; margin: 0 auto 18px;
+    }
+    .sheet h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 16px; color: #2d3436; }
+    .sheet-btn {
+      width: 100%; padding: 15px; border: none; border-radius: 14px;
+      font-size: .97rem; font-weight: 600; cursor: pointer;
+      margin-bottom: 10px; transition: transform .15s;
+    }
+    .sheet-btn:active { transform: scale(.97); }
+    .sheet-btn-danger  { background: #fff5f7; color: #e8143e; border: 2px solid #fce4ec; }
+    .sheet-btn-cancel  { background: #f5f6fa; color: #636e72; }
+  </style>
+</head>
+<body>
+
+<div id="hearts"></div>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-title">❤️ Hỏi Nhau Đi</div>
+    <button class="icon-btn" onclick="openSheet()" aria-label="Cài đặt">⚙️</button>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap">
+    <div class="progress-track">
+      <div class="progress-fill" id="pFill" style="width:0%"></div>
+    </div>
+    <div class="progress-label" id="pLabel">Đang tải...</div>
+  </div>
+
+  <!-- Question card -->
+  <div class="card" id="card">
+    <div class="badge" id="badge">...</div>
+    <div class="question-text" id="qText">Đang tải câu hỏi...</div>
+    <div class="remaining-label" id="remaining"></div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="buttons" id="btns">
+    <button class="btn btn-skip"  onclick="skip()">Bỏ qua &rarr;</button>
+    <button class="btn btn-asked" onclick="markAsked()">&#10003; Hỏi rồi!</button>
+  </div>
+
+  <!-- Done screen -->
+  <div class="done-screen" id="doneScreen">
+    <div class="done-emoji">🎉</div>
+    <div class="done-title">Hết câu hỏi rồi!</div>
+    <div class="done-sub">
+      Hai bạn đã cùng nhau đi qua hết tất cả câu hỏi.<br>
+      Cảm ơn vì đã dành thời gian khám phá nhau sâu hơn nhé ❤️
+    </div>
+    <button class="btn btn-asked btn-full" onclick="doReset()">
+      🔄 Bắt đầu lại từ đầu
+    </button>
+  </div>
+
+</div>
+
+<!-- Bottom sheet -->
+<div class="overlay" id="overlay" onclick="closeSheet(event)">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>⚙️ Cài đặt</h3>
+    <button class="sheet-btn sheet-btn-danger" onclick="confirmReset()">
+      🔄 Đặt lại — xóa toàn bộ tiến trình
+    </button>
+    <button class="sheet-btn sheet-btn-cancel" onclick="closeSheet()">Đóng</button>
+  </div>
+</div>
+
+<script>
+  const TOTAL = {{ total }};
+  let current = null;
+
+  // ── Category colours ──────────────────────────────────────────
+  const CAT_COLOR = {
+    'Ký ức & Quá khứ':         '#ff6b9d',
+    'Mơ ước & Tương lai':      '#a29bfe',
+    'Tình yêu & Mối quan hệ':  '#e84393',
+    'Giá trị & Niềm tin':      '#f0a500',
+    'Sợ hãi & Dễ tổn thương':  '#00b894',
+    'Gia đình & Bạn bè':       '#4a9eff',
+    'Cuộc sống hàng ngày':     '#ff7675',
+    'Tăng trưởng bản thân':    '#00cec9',
+    'Vui & Sáng tạo':          '#e17055',
+    'Kỳ quặc & Thú vị':        '#6c5ce7',
+  };
+
+  // ── Floating hearts ───────────────────────────────────────────
+  (function spawnHearts() {
+    const wrap = document.getElementById('hearts');
+    const pool = ['❤️','🧡','💕','💗','💖','🌸','✨','💝'];
+    for (let i = 0; i < 14; i++) {
+      const el = document.createElement('div');
+      el.className = 'heart';
+      el.textContent = pool[i % pool.length];
+      el.style.left     = (Math.random() * 98) + '%';
+      el.style.fontSize = (.7 + Math.random() * 1.1) + 'rem';
+      el.style.animationDuration = (9 + Math.random() * 13) + 's';
+      el.style.animationDelay   = (Math.random() * 12) + 's';
+      wrap.appendChild(el);
+    }
+  })();
+
+  // ── Progress ──────────────────────────────────────────────────
+  function setProgress(asked, total) {
+    document.getElementById('pFill').style.width = (total ? asked / total * 100 : 0) + '%';
+    document.getElementById('pLabel').textContent =
+      asked === 0 ? 'Chưa hỏi câu nào — bắt đầu thôi! ✨'
+      : asked === total ? 'Đã hỏi hết tất cả câu! 🎉'
+      : `Đã hỏi ${asked} / ${total} câu ✨`;
+  }
+
+  // ── Load question ─────────────────────────────────────────────
+  async function loadQ() {
+    try {
+      const res  = await fetch('/api/question');
+      const data = await res.json();
+      if (data.done) { showDone(); return; }
+      current = data.question;
+      setProgress(data.asked_count, data.total);
+      animateCard(data.question, data.remaining);
+    } catch (e) { console.error(e); }
+  }
+
+  function animateCard(q, remaining) {
+    const card = document.getElementById('card');
+    card.classList.add('hide');
+    setTimeout(() => {
+      // update content while hidden
+      const badge = document.getElementById('badge');
+      badge.textContent = q.emoji + ' ' + q.category;
+      badge.style.background = CAT_COLOR[q.category] || '#ff6b9d';
+      document.getElementById('qText').textContent = q.text;
+      document.getElementById('remaining').textContent =
+        remaining === 1 ? 'Đây là câu cuối cùng!' : `Còn ${remaining - 1} câu chưa hỏi`;
+
+      // reset position below, then slide in
+      card.style.transition = 'none';
+      card.style.transform  = 'translateY(28px)';
+      card.style.opacity    = '0';
+      card.classList.remove('hide');
+      card.offsetHeight; // reflow
+      card.style.transition = 'opacity .32s ease, transform .32s ease';
+      card.style.opacity    = '1';
+      card.style.transform  = 'translateY(0)';
+    }, 260);
+  }
+
+  // ── Actions ───────────────────────────────────────────────────
+  async function markAsked() {
+    if (!current) return;
+    await fetch('/api/mark', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: current.id }),
+    });
+    current = null;
+    await loadQ();
+  }
+
+  async function skip() { await loadQ(); }
+
+  // ── Done screen ───────────────────────────────────────────────
+  function showDone() {
+    document.getElementById('card').style.display = 'none';
+    document.getElementById('btns').style.display = 'none';
+    document.getElementById('doneScreen').classList.add('show');
+    setProgress(TOTAL, TOTAL);
+  }
+
+  // ── Reset ─────────────────────────────────────────────────────
+  async function doReset() {
+    await fetch('/api/reset', { method: 'POST' });
+    document.getElementById('card').style.display       = '';
+    document.getElementById('btns').style.display       = '';
+    document.getElementById('doneScreen').classList.remove('show');
+    closeSheet();
+    current = null;
+    await loadQ();
+  }
+
+  function confirmReset() {
+    if (confirm('Xóa toàn bộ tiến trình và bắt đầu lại?')) doReset();
+  }
+
+  // ── Sheet ─────────────────────────────────────────────────────
+  function openSheet()  { document.getElementById('overlay').classList.add('show'); }
+  function closeSheet(e) {
+    if (!e || e.target === document.getElementById('overlay'))
+      document.getElementById('overlay').classList.remove('show');
+  }
+
+  // ── Init ──────────────────────────────────────────────────────
+  setProgress({{ asked }}, {{ total }});
+  loadQ();
+</script>
+</body>
+</html>
