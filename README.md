@@ -54,20 +54,37 @@ python generate_vapid.py     # in ra VAPID_PUBLIC_KEY / VAPID_PRIVATE_KEY
 ```
 Đặt 2 giá trị này vào biến môi trường (xem `.env.example`).
 
+## 💾 Lưu trữ data (quan trọng với host free)
+
+Render free có **ổ đĩa tạm** — bị xóa mỗi khi app "ngủ" rồi thức dậy. Vì hai
+người mở app vào các thời điểm khác nhau trong ngày, data sẽ mất nếu chỉ lưu
+file. Vì vậy production dùng **Upstash Redis (free, vĩnh viễn)**:
+
+- App tự dùng Redis nếu có `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN`
+- Không có 2 biến này → tự fallback về `state.json` (tiện chạy local)
+
 ## 🚀 Deploy (Render.com — free)
 
-1. Push code lên GitHub (đã xong).
-2. Vào Render → **New + → Blueprint** → chọn repo này (đã có `render.yaml`).
-3. Render tự tạo web service + ổ đĩa lưu `state.json`.
-4. Sau khi có URL (`https://<app>.onrender.com`), tạo cron sáng:
-   - Vào https://cron-job.org (free) → tạo job GET:
-     `https://<app>.onrender.com/cron/morning?key=<CRON_SECRET>`
-   - Chạy mỗi ngày lúc 08:00. (Lấy `CRON_SECRET` trong Render → Environment.)
+**B1. Tạo kho lưu trữ (Upstash):**
+1. Vào https://upstash.com → đăng nhập (GitHub) → **Create Database** (Redis)
+2. Chọn region gần bạn → tạo xong, vào tab **REST API**, copy:
+   `UPSTASH_REDIS_REST_URL` và `UPSTASH_REDIS_REST_TOKEN`
 
-> Render free ngủ sau khi không dùng → dùng cron ngoài (cron-job.org) để đánh thức
-> và gửi thông báo sáng. Host always-on (VPS) thì đặt `ENABLE_SCHEDULER=1` là đủ.
+**B2. Deploy app (Render):**
+1. Vào Render → **New + → Blueprint** → chọn repo `RelationShip-tool` (đã có `render.yaml`)
+2. Render hỏi điền các biến `sync:false` → dán:
+   - `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` (từ B1)
+   - (VAPID có thể để trống, dùng key mặc định; hoặc chạy `python generate_vapid.py` để tạo riêng)
+3. Bấm **Apply** → chờ build xong → có link `https://<app>.onrender.com`
+4. Lưu link này, mở mỗi sáng ❤️
 
-Các host khác (Railway/Fly/Heroku) dùng `Procfile` sẵn có.
+**B3. Thông báo sáng tự động:**
+- Vào https://cron-job.org (free) → tạo job **GET**:
+  `https://<app>.onrender.com/cron/morning?key=<CRON_SECRET>`
+- Lịch chạy mỗi ngày lúc 08:00. Lấy `CRON_SECRET` ở Render → service → **Environment**.
+
+> Host always-on (VPS) thì khỏi cron — đặt `ENABLE_SCHEDULER=1` là đủ.
+> Các host khác (Railway/Fly/Heroku) dùng `Procfile` sẵn có.
 
 ## Cấu trúc
 

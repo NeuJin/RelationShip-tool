@@ -12,23 +12,24 @@ services:
       - key: CRON_SECRET
         generateValue: true
       # VAPID keys — leave unset to use the in-code dev keys, OR paste your
-      # own (recommended for production) in the Render dashboard.
+      # own (recommended) in the Render dashboard. Generate: python generate_vapid.py
       - key: VAPID_PUBLIC_KEY
         sync: false
       - key: VAPID_PRIVATE_KEY
         sync: false
       - key: VAPID_SUBJECT
         value: mailto:hello@forourrelationship.app
-      # Persist daily Q&A across restarts (free tier resets the disk otherwise).
-      - key: DATA_DIR
-        value: /var/data
-    disk:
-      name: data
-      mountPath: /var/data
-      sizeGB: 1
+      # Persistent storage (REQUIRED on free tier — the disk is ephemeral).
+      # Create a free database at https://upstash.com (Redis) and paste the
+      # REST URL + token here. Without these, data resets when the app sleeps.
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
 
-# NOTE on morning notifications:
-# Render free web services sleep after inactivity, so an in-process scheduler
-# is unreliable. Instead create a free external cron at https://cron-job.org
-# that GETs:  https://<your-app>.onrender.com/cron/morning?key=<CRON_SECRET>
-# once every morning (e.g. 08:00). That wakes the app and sends the push.
+# ── Morning notifications ────────────────────────────────────────
+# Render free web services sleep after inactivity, so the in-process
+# scheduler is unreliable. Create a free external cron at
+# https://cron-job.org that GETs (once each morning, e.g. 08:00):
+#     https://<your-app>.onrender.com/cron/morning?key=<CRON_SECRET>
+# That wakes the app and sends the push to both partners.

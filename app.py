@@ -222,19 +222,60 @@ DEFAULT_STATE = {
 }
 
 
-def load_state():
-    if os.path.exists(STATE_FILE):
-        with open(STATE_FILE, 'r', encoding='utf-8') as f:
-            state = json.load(f)
-    else:
-        state = {}
-    # ensure all keys exist (migration-safe)
+# ── Storage backend ──────────────────────────────────────────────
+# On free hosts (Render) the filesystem is ephemeral and wiped when the
+# instance sleeps, so a JSON file would lose data between visits. If an
+# Upstash Redis REST endpoint is configured, we persist there instead.
+# Locally (no env vars) we fall back to a JSON file.
+import urllib.request
+
+UPSTASH_URL = os.environ.get('UPSTASH_REDIS_REST_URL', '').rstrip('/')
+UPSTASH_TOKEN = os.environ.get('UPSTASH_REDIS_REST_TOKEN', '')
+STATE_KEY = os.environ.get('STATE_KEY', 'four_state')
+USE_REDIS = bool(UPSTASH_URL and UPSTASH_TOKEN)
+
+
+def _redis_cmd(cmd):
+    """Run one Upstash REST command (list form), return 'result'."""
+    req = urllib.request.Request(
+        UPSTASH_URL,
+        data=json.dumps(cmd).encode('utf-8'),
+        headers={'Authorization': f'Bearer {UPSTASH_TOKEN}',
+                 'Content-Type': 'application/json'},
+        method='POST',
+    )
+    with urllib.request.urlopen(req, timeout=10) as r:
+        return json.load(r).get('result')
+
+
+def _migrate(state):
     for k, v in DEFAULT_STATE.items():
         state.setdefault(k, json.loads(json.dumps(v)))
     return state
 
 
+def load_state():
+    state = {}
+    if USE_REDIS:
+        try:
+            raw = _redis_cmd(['GET', STATE_KEY])
+            if raw:
+                state = json.loads(raw)
+        except Exception as e:
+            print('[storage] redis load failed:', e)
+    elif os.path.exists(STATE_FILE):
+        with open(STATE_FILE, 'r', encoding='utf-8') as f:
+            state = json.load(f)
+    return _migrate(state)
+
+
 def save_state(state):
+    if USE_REDIS:
+        try:
+            _redis_cmd(['SET', STATE_KEY, json.dumps(state, ensure_ascii=False)])
+            return
+        except Exception as e:
+            print('[storage] redis save failed:', e)
     with open(STATE_FILE, 'w', encoding='utf-8') as f:
         json.dump(state, f, ensure_ascii=False, indent=2)
 
