@@ -1,8 +1,31 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, send_from_directory, Response
 import json, os, random
 
 app = Flask(__name__)
-STATE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'state.json')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# DATA_DIR lets a host mount a persistent disk (e.g. Render /var/data).
+DATA_DIR = os.environ.get('DATA_DIR', BASE_DIR)
+os.makedirs(DATA_DIR, exist_ok=True)
+STATE_FILE = os.path.join(DATA_DIR, 'state.json')
+
+# ── Web Push (VAPID) config ──────────────────────────────────────
+# Override these via environment variables in production.
+# Dev fallback keys included so it works out of the box locally.
+VAPID_PUBLIC_KEY = os.environ.get(
+    'VAPID_PUBLIC_KEY',
+    'BMRcZQ1SWv0NEh1-KYPDICERS2Dsfm4VpDRQfE5LMKQzOjreZ7LMeTH_a5hTxkP6xEPMAbDqK-aviln8w1NY5dI')
+VAPID_PRIVATE_KEY = os.environ.get(
+    'VAPID_PRIVATE_KEY',
+    '1raCjeYLOLiQzZ0eCMifHOHGUs0gMv-0IzoIcnLbn-A')
+VAPID_SUBJECT = os.environ.get('VAPID_SUBJECT', 'mailto:hello@forourrelationship.app')
+# Secret guarding the external cron endpoint (set in production).
+CRON_SECRET = os.environ.get('CRON_SECRET', 'dev-cron-secret')
+
+try:
+    from pywebpush import webpush, WebPushException
+    _PUSH_OK = True
+except Exception:
+    _PUSH_OK = False
 
 QUESTIONS = [
     # === Ký ức & Quá khứ ===
@@ -194,6 +217,8 @@ DEFAULT_STATE = {
     "used_qids": [],                    # questions already used as daily question
     "daily": {},                        # date -> {qid, answers:{p1,p2}, revealed}
     "asked": [],                        # legacy explore-mode marks
+    "subs": {"p1": [], "p2": []},       # web-push subscriptions per partner
+    "last_morning_sent": "",            # date the morning push was last sent
 }
 
 
@@ -255,9 +280,121 @@ def public_today(state, day):
     return payload
 
 
+# ── Web push helpers ─────────────────────────────────────────────
+def send_push(subscription, title, body, url='/'):
+    """Send one push. Returns True on success, False if expired/failed."""
+    if not _PUSH_OK:
+        return False
+    try:
+        webpush(
+            subscription_info=subscription,
+            data=json.dumps({"title": title, "body": body, "url": url}),
+            vapid_private_key=VAPID_PRIVATE_KEY,
+            vapid_claims={"sub": VAPID_SUBJECT},
+            timeout=10,
+        )
+        return True
+    except WebPushException as e:
+        # 404/410 -> subscription gone; signal removal
+        code = getattr(getattr(e, 'response', None), 'status_code', None)
+        if code in (404, 410):
+            return None
+        return False
+    except Exception:
+        return False
+
+
+def push_to_roles(state, roles, title, body, url='/'):
+    """Send to all subscriptions of the given roles; prune dead ones."""
+    changed = False
+    for role in roles:
+        kept = []
+        for sub in state['subs'].get(role, []):
+            res = send_push(sub, title, body, url)
+            if res is None:        # expired -> drop
+                changed = True
+                continue
+            kept.append(sub)
+        state['subs'][role] = kept
+    if changed:
+        save_state(state)
+
+
+def send_morning(state=None):
+    """Send the daily morning notification (idempotent per day)."""
+    state = state or load_state()
+    d = today_str()
+    if state.get('last_morning_sent') == d:
+        return {"sent": False, "reason": "already sent today"}
+    ensure_today_question(state)
+    push_to_roles(state, ['p1', 'p2'],
+                  'Chào buổi sáng ❤️',
+                  'Câu hỏi hôm nay đã sẵn sàng. Cùng trả lời nhé!',
+                  '/')
+    state = load_state()
+    state['last_morning_sent'] = d
+    save_state(state)
+    return {"sent": True}
+
+
 @app.route('/')
 def index():
     return render_template('index.html', total=len(QUESTIONS))
+
+
+# ── PWA: service worker (root scope) + manifest ──────────────────
+@app.route('/sw.js')
+def service_worker():
+    resp = send_from_directory(os.path.join(BASE_DIR, 'static'), 'sw.js')
+    resp.headers['Service-Worker-Allowed'] = '/'
+    resp.headers['Cache-Control'] = 'no-cache'
+    return resp
+
+
+@app.route('/manifest.json')
+def manifest():
+    return send_from_directory(os.path.join(BASE_DIR, 'static'), 'manifest.json')
+
+
+# ── Push subscription endpoints ──────────────────────────────────
+@app.route('/api/vapid-public')
+def vapid_public():
+    return jsonify({"key": VAPID_PUBLIC_KEY, "enabled": _PUSH_OK})
+
+
+@app.route('/api/subscribe', methods=['POST'])
+def subscribe():
+    data = request.get_json() or {}
+    who = data.get('who')
+    sub = data.get('subscription')
+    if who not in ('p1', 'p2') or not sub or not sub.get('endpoint'):
+        return jsonify({"error": "thiếu thông tin"}), 400
+    state = load_state()
+    subs = state['subs'].setdefault(who, [])
+    if not any(s.get('endpoint') == sub['endpoint'] for s in subs):
+        subs.append(sub)
+        save_state(state)
+    return jsonify({"ok": True})
+
+
+@app.route('/api/test-push', methods=['POST'])
+def test_push():
+    data = request.get_json() or {}
+    who = data.get('who')
+    if who not in ('p1', 'p2'):
+        return jsonify({"error": "thiếu who"}), 400
+    state = load_state()
+    push_to_roles(state, [who], 'Thông báo thử ❤️',
+                  'Tuyệt! Bạn sẽ nhận được nhắc nhở mỗi sáng.', '/')
+    return jsonify({"ok": True})
+
+
+# ── Cron endpoint for morning notification (external scheduler) ──
+@app.route('/cron/morning', methods=['GET', 'POST'])
+def cron_morning():
+    if request.args.get('key') != CRON_SECRET:
+        return jsonify({"error": "unauthorized"}), 401
+    return jsonify(send_morning())
 
 
 # ── Partner setup ────────────────────────────────────────────────
@@ -291,8 +428,21 @@ def answer():
         return jsonify({"error": "thiếu thông tin"}), 400
     state = load_state()
     day = ensure_today_question(state)
+    was_done = bool(day['answers'][who].strip())
     day['answers'][who] = text
     save_state(state)
+
+    # Notify the other partner (only on first answer, not edits)
+    if not was_done:
+        other_role = 'p2' if who == 'p1' else 'p1'
+        my_name = state['partners'].get(who) or ('Người 1' if who == 'p1' else 'Người 2')
+        if all(day['answers'][p].strip() for p in ('p1', 'p2')):
+            push_to_roles(state, [other_role], 'Cả hai đã trả lời! 🎉',
+                          'Mở app để cùng xem câu trả lời của nhau nhé ❤️', '/')
+        else:
+            push_to_roles(state, [other_role], f'{my_name} đã trả lời 💌',
+                          'Tới lượt bạn rồi! Mở app để trả lời nhé.', '/')
+
     return jsonify(public_today(state, day))
 
 
@@ -359,6 +509,28 @@ def reset():
     state['asked'] = []
     save_state(state)
     return jsonify({'success': True})
+
+
+# ── Optional in-process scheduler (for always-on hosts / VPS) ────
+# Set ENABLE_SCHEDULER=1 and MORNING_HOUR (default 8) to use.
+# On hosts that sleep (e.g. Render free), use an external cron hitting
+# /cron/morning?key=CRON_SECRET instead — it's more reliable.
+def _start_scheduler():
+    if os.environ.get('ENABLE_SCHEDULER') != '1':
+        return
+    try:
+        from apscheduler.schedulers.background import BackgroundScheduler
+    except Exception:
+        print('[scheduler] APScheduler not installed; skipping')
+        return
+    hour = int(os.environ.get('MORNING_HOUR', '8'))
+    sched = BackgroundScheduler(daemon=True)
+    sched.add_job(lambda: send_morning(), 'cron', hour=hour, minute=0)
+    sched.start()
+    print(f'[scheduler] morning push scheduled daily at {hour:02d}:00')
+
+
+_start_scheduler()
 
 
 if __name__ == '__main__':

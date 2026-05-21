@@ -37,14 +37,54 @@ python app.py
 > 💡 Để cả hai dùng từ xa (khác mạng), deploy lên một host như Render/Railway/PythonAnywhere
 > hoặc dùng tunnel (ngrok). State lưu trong `state.json` trên server chung.
 
+## 🔔 Thông báo đẩy (Web Push)
+
+App là một **PWA** — thêm vào màn hình chính điện thoại để dùng như app thật.
+
+- App **hỏi quyền thông báo trước** (banner "Bật nhắc nhở mỗi sáng?")
+- Sau khi cho phép → nhận push: **mỗi sáng** có câu hỏi mới, và **khi người ấy đã trả lời**
+- Thông báo tự bật **kể cả khi không mở app** (qua service worker)
+
+> ⚠️ Web Push chỉ chạy trên **HTTPS** (hoặc localhost). Vì vậy phải **deploy** mới
+> dùng được trên điện thoại. Trên iPhone cần iOS 16.4+ và "Thêm vào MH chính".
+
+### Đổi sang VAPID key riêng (khuyến nghị cho production)
+```bash
+python generate_vapid.py     # in ra VAPID_PUBLIC_KEY / VAPID_PRIVATE_KEY
+```
+Đặt 2 giá trị này vào biến môi trường (xem `.env.example`).
+
+## 🚀 Deploy (Render.com — free)
+
+1. Push code lên GitHub (đã xong).
+2. Vào Render → **New + → Blueprint** → chọn repo này (đã có `render.yaml`).
+3. Render tự tạo web service + ổ đĩa lưu `state.json`.
+4. Sau khi có URL (`https://<app>.onrender.com`), tạo cron sáng:
+   - Vào https://cron-job.org (free) → tạo job GET:
+     `https://<app>.onrender.com/cron/morning?key=<CRON_SECRET>`
+   - Chạy mỗi ngày lúc 08:00. (Lấy `CRON_SECRET` trong Render → Environment.)
+
+> Render free ngủ sau khi không dùng → dùng cron ngoài (cron-job.org) để đánh thức
+> và gửi thông báo sáng. Host always-on (VPS) thì đặt `ENABLE_SCHEDULER=1` là đủ.
+
+Các host khác (Railway/Fly/Heroku) dùng `Procfile` sẵn có.
+
 ## Cấu trúc
 
 ```
 couple_questions/
-├── app.py              # Flask server, câu hỏi, logic daily/answer/reveal/history
+├── app.py              # Flask: câu hỏi, daily/answer/reveal/history, web push, cron
 ├── templates/
-│   └── index.html      # Giao diện mobile (today + history tabs)
-├── state.json          # Câu hỏi mỗi ngày + câu trả lời (tự tạo, KHÔNG commit)
+│   └── index.html      # Giao diện mobile (today + history + notif opt-in)
+├── static/
+│   ├── sw.js           # Service worker (push)
+│   ├── manifest.json   # PWA manifest
+│   └── icon-192/512.png
+├── generate_vapid.py   # Tạo VAPID key riêng
+├── render.yaml         # Blueprint deploy Render
+├── Procfile            # gunicorn (Railway/Heroku/Fly)
+├── runtime.txt         # Python 3.11
+├── .env.example        # Mẫu biến môi trường
 ├── requirements.txt
 └── README.md
 ```
@@ -58,3 +98,6 @@ couple_questions/
 | `/api/reveal` | POST | Mở câu trả lời (cần cả hai đã trả lời) |
 | `/api/partners` | GET/POST | Tên hai người |
 | `/api/history` | GET | Lịch sử các ngày đã reveal |
+| `/api/vapid-public` | GET | Public key cho push |
+| `/api/subscribe` | POST | Lưu subscription `{who, subscription}` |
+| `/cron/morning` | GET | Gửi thông báo sáng (cần `?key=CRON_SECRET`) |

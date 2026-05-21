@@ -6,6 +6,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="theme-color" content="#ff9a9e">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/static/icon-192.png">
   <title>For Our Relationship ❤️</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -136,6 +138,20 @@
     .hidden { display: none !important; }
 
     .pop-emoji { font-size: 3.2rem; text-align:center; margin-bottom: 8px; }
+
+    /* notification opt-in banner */
+    .notif-banner {
+      background: rgba(255,255,255,.92); border-radius: 18px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow);
+    }
+    .notif-banner .nb-emoji { font-size: 1.6rem; }
+    .notif-banner .nb-text { flex: 1; font-size: .82rem; line-height: 1.4; color: var(--ink); font-weight: 600; }
+    .notif-banner .nb-text small { display:block; color: var(--muted); font-weight: 500; font-size:.76rem; margin-top:2px; }
+    .notif-banner button {
+      border: none; background: linear-gradient(135deg, var(--rose), var(--rose-dk)); color: #fff;
+      font-weight: 700; font-size: .82rem; padding: 10px 14px; border-radius: 12px; cursor: pointer; white-space: nowrap;
+    }
+    .notif-banner .nb-close { background: none; color: var(--muted); padding: 6px; font-size: 1rem; }
   </style>
 </head>
 <body>
@@ -148,6 +164,16 @@
       <span id="brandSub">Câu hỏi mỗi ngày cho hai ta</span>
     </div>
     <button class="me-chip" id="meChip" onclick="openSetup()">👤 <span id="meName">...</span></button>
+  </div>
+
+  <!-- notification opt-in -->
+  <div class="notif-banner hidden" id="notifBanner">
+    <span class="nb-emoji">🔔</span>
+    <div class="nb-text">Bật nhắc nhở mỗi sáng?
+      <small>Nhận thông báo khi có câu hỏi mới & khi người ấy đã trả lời.</small>
+    </div>
+    <button onclick="enableNotifications()">Bật</button>
+    <button class="nb-close" onclick="dismissNotif()" aria-label="Đóng">✕</button>
   </div>
 
   <!-- ===== TAB: TODAY ===== -->
@@ -254,6 +280,7 @@
     document.getElementById('setupModal').classList.remove('show');
     document.getElementById('meName').textContent=MYNAME;
     loadToday();
+    refreshNotifBanner();
   }
 
   // ── morning popup ──
@@ -362,11 +389,69 @@
 
   function escapeHtml(s){ return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
+  // ── push notifications ──
+  let swReg = null;
+  function b64ToUint8(base64){
+    const pad='='.repeat((4-base64.length%4)%4);
+    const b=(base64+pad).replace(/-/g,'+').replace(/_/g,'/');
+    const raw=atob(b); return Uint8Array.from([...raw].map(c=>c.charCodeAt(0)));
+  }
+  async function registerSW(){
+    if(!('serviceWorker' in navigator)) return null;
+    try{ swReg = await navigator.serviceWorker.register('/sw.js'); return swReg; }
+    catch(e){ console.warn('SW reg failed',e); return null; }
+  }
+  function pushSupported(){
+    return ('serviceWorker' in navigator) && ('PushManager' in window) && ('Notification' in window);
+  }
+  // Show the opt-in banner only if supported and not yet granted/dismissed.
+  function refreshNotifBanner(){
+    const banner=document.getElementById('notifBanner');
+    if(!ROLE || !pushSupported()){ banner.classList.add('hidden'); return; }
+    const granted = Notification.permission === 'granted';
+    const subscribed = localStorage.getItem('for_pushSub')==='1';
+    const dismissed = localStorage.getItem('for_notifDismiss')==='1';
+    banner.classList.toggle('hidden', (granted && subscribed) || dismissed);
+  }
+  function dismissNotif(){ localStorage.setItem('for_notifDismiss','1'); refreshNotifBanner(); }
+
+  async function enableNotifications(){
+    if(!pushSupported()){ alert('Trình duyệt này không hỗ trợ thông báo đẩy.'); return; }
+    // 1) ask permission first
+    const perm = await Notification.requestPermission();
+    if(perm!=='granted'){
+      alert('Bạn chưa cho phép thông báo. Có thể bật lại trong cài đặt trình duyệt.');
+      return;
+    }
+    // 2) subscribe to push
+    try{
+      const reg = swReg || await registerSW();
+      const vr = await (await fetch('/api/vapid-public')).json();
+      if(!vr.enabled){ alert('Server chưa bật push.'); return; }
+      const sub = await reg.pushManager.subscribe({
+        userVisibleOnly:true,
+        applicationServerKey: b64ToUint8(vr.key),
+      });
+      await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({who:ROLE, subscription: sub})});
+      localStorage.setItem('for_pushSub','1');
+      localStorage.removeItem('for_notifDismiss');
+      refreshNotifBanner();
+      // friendly test push
+      fetch('/api/test-push',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({who:ROLE})});
+    }catch(e){
+      console.warn('subscribe failed',e);
+      alert('Không đăng ký được thông báo: '+e.message);
+    }
+  }
+
   // ── init ──
+  registerSW();
   if(!ROLE){ openSetup(); }
   else {
     document.getElementById('meName').textContent=MYNAME;
     loadToday();
+    refreshNotifBanner();
     document.addEventListener('visibilitychange',()=>{ if(!document.hidden) loadToday(); });
   }
 </script>

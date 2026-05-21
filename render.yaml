@@ -1,0 +1,34 @@
+# Render.com blueprint — deploy with one click via "New + > Blueprint".
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: for-our-relationship
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 1 --timeout 60 --bind 0.0.0.0:$PORT
+    envVars:
+      # A secret guarding /cron/morning. Render generates a random value.
+      - key: CRON_SECRET
+        generateValue: true
+      # VAPID keys — leave unset to use the in-code dev keys, OR paste your
+      # own (recommended for production) in the Render dashboard.
+      - key: VAPID_PUBLIC_KEY
+        sync: false
+      - key: VAPID_PRIVATE_KEY
+        sync: false
+      - key: VAPID_SUBJECT
+        value: mailto:hello@forourrelationship.app
+      # Persist daily Q&A across restarts (free tier resets the disk otherwise).
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 1
+
+# NOTE on morning notifications:
+# Render free web services sleep after inactivity, so an in-process scheduler
+# is unreliable. Instead create a free external cron at https://cron-job.org
+# that GETs:  https://<your-app>.onrender.com/cron/morning?key=<CRON_SECRET>
+# once every morning (e.g. 08:00). That wakes the app and sends the push.

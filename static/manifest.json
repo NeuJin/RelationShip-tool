@@ -1,0 +1,14 @@
+{
+  "name": "For Our Relationship",
+  "short_name": "For Us",
+  "description": "Câu hỏi mỗi ngày cho hai ta — cùng trả lời và mở ra xem câu của nhau.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ff9a9e",
+  "theme_color": "#ff9a9e",
+  "icons": [
+    { "src": "/static/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/static/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -18,6 +18,9 @@ env/
 # App state (user progress — không commit)
 state.json
 
+# Local launch / preview config
+.claude/
+
 # IDE
 .vscode/
 .idea/
