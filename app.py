@@ -187,11 +187,26 @@ QUESTIONS = [
 ]
 
 
+QUESTION_BY_ID = {q['id']: q for q in QUESTIONS}
+
+DEFAULT_STATE = {
+    "partners": {"p1": "", "p2": ""},  # display names
+    "used_qids": [],                    # questions already used as daily question
+    "daily": {},                        # date -> {qid, answers:{p1,p2}, revealed}
+    "asked": [],                        # legacy explore-mode marks
+}
+
+
 def load_state():
     if os.path.exists(STATE_FILE):
         with open(STATE_FILE, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    return {"asked": []}
+            state = json.load(f)
+    else:
+        state = {}
+    # ensure all keys exist (migration-safe)
+    for k, v in DEFAULT_STATE.items():
+        state.setdefault(k, json.loads(json.dumps(v)))
+    return state
 
 
 def save_state(state):
@@ -199,12 +214,120 @@ def save_state(state):
         json.dump(state, f, ensure_ascii=False, indent=2)
 
 
+def today_str():
+    from datetime import date
+    return date.today().isoformat()
+
+
+def ensure_today_question(state):
+    """Pick a shared question for today if not already chosen."""
+    d = today_str()
+    if d not in state['daily']:
+        used = set(state['used_qids'])
+        pool = [q for q in QUESTIONS if q['id'] not in used]
+        if not pool:                      # all used -> recycle
+            state['used_qids'] = []
+            pool = QUESTIONS[:]
+        q = random.choice(pool)
+        state['daily'][d] = {"qid": q['id'], "answers": {"p1": "", "p2": ""}, "revealed": False}
+        state['used_qids'].append(q['id'])
+        save_state(state)
+    return state['daily'][d]
+
+
+def public_today(state, day):
+    """Build the today payload. Hide partner answers unless revealed."""
+    q = QUESTION_BY_ID[day['qid']]
+    p1_done = bool(day['answers']['p1'].strip())
+    p2_done = bool(day['answers']['p2'].strip())
+    both_done = p1_done and p2_done
+    payload = {
+        "date": today_str(),
+        "question": q,
+        "p1_done": p1_done,
+        "p2_done": p2_done,
+        "both_done": both_done,
+        "revealed": day['revealed'],
+        "partners": state['partners'],
+    }
+    if day['revealed']:
+        payload['answers'] = day['answers']
+    return payload
+
+
 @app.route('/')
 def index():
+    return render_template('index.html', total=len(QUESTIONS))
+
+
+# ── Partner setup ────────────────────────────────────────────────
+@app.route('/api/partners', methods=['GET', 'POST'])
+def partners():
     state = load_state()
-    return render_template('index.html', total=len(QUESTIONS), asked=len(state['asked']))
+    if request.method == 'POST':
+        data = request.get_json() or {}
+        who = data.get('who')             # 'p1' or 'p2'
+        name = (data.get('name') or '').strip()[:30]
+        if who in ('p1', 'p2') and name:
+            state['partners'][who] = name
+            save_state(state)
+    return jsonify({"partners": state['partners']})
 
 
+# ── Daily question flow ──────────────────────────────────────────
+@app.route('/api/today')
+def today():
+    state = load_state()
+    day = ensure_today_question(state)
+    return jsonify(public_today(state, day))
+
+
+@app.route('/api/answer', methods=['POST'])
+def answer():
+    data = request.get_json() or {}
+    who = data.get('who')
+    text = (data.get('text') or '').strip()
+    if who not in ('p1', 'p2') or not text:
+        return jsonify({"error": "thiếu thông tin"}), 400
+    state = load_state()
+    day = ensure_today_question(state)
+    day['answers'][who] = text
+    save_state(state)
+    return jsonify(public_today(state, day))
+
+
+@app.route('/api/reveal', methods=['POST'])
+def reveal():
+    state = load_state()
+    day = ensure_today_question(state)
+    both = all(day['answers'][p].strip() for p in ('p1', 'p2'))
+    if not both:
+        return jsonify({"error": "Cả hai cần trả lời trước khi mở"}), 400
+    day['revealed'] = True
+    save_state(state)
+    return jsonify(public_today(state, day))
+
+
+# ── History ──────────────────────────────────────────────────────
+@app.route('/api/history')
+def history():
+    state = load_state()
+    out = []
+    for d in sorted(state['daily'].keys(), reverse=True):
+        day = state['daily'][d]
+        if d == today_str() and not day['revealed']:
+            continue                       # don't leak today before reveal
+        if not day['revealed']:
+            continue
+        out.append({
+            "date": d,
+            "question": QUESTION_BY_ID[day['qid']],
+            "answers": day['answers'],
+        })
+    return jsonify({"history": out, "partners": state['partners']})
+
+
+# ── Legacy explore mode ──────────────────────────────────────────
 @app.route('/api/question')
 def get_question():
     state = load_state()
@@ -213,13 +336,9 @@ def get_question():
     if not available:
         return jsonify({'done': True, 'total': len(QUESTIONS)})
     q = random.choice(available)
-    asked_count = len(QUESTIONS) - len(available)
     return jsonify({
-        'done': False,
-        'question': q,
-        'remaining': len(available),
-        'total': len(QUESTIONS),
-        'asked_count': asked_count,
+        'done': False, 'question': q, 'remaining': len(available),
+        'total': len(QUESTIONS), 'asked_count': len(QUESTIONS) - len(available),
     })
 
 
@@ -236,15 +355,21 @@ def mark_asked():
 
 @app.route('/api/reset', methods=['POST'])
 def reset():
-    save_state({'asked': []})
+    state = load_state()
+    state['asked'] = []
+    save_state(state)
     return jsonify({'success': True})
 
 
 if __name__ == '__main__':
-    import socket
+    import socket, sys
+    sys.stdout.reconfigure(encoding='utf-8') if hasattr(sys.stdout, 'reconfigure') else None
     hostname = socket.gethostname()
-    local_ip = socket.gethostbyname(hostname)
-    print(f"\n  App đang chạy!")
-    print(f"  Máy tính : http://localhost:5000")
-    print(f"  Điện thoại (cùng wifi): http://{local_ip}:5000\n")
+    try:
+        local_ip = socket.gethostbyname(hostname)
+    except Exception:
+        local_ip = '127.0.0.1'
+    print(f"\n  App dang chay!")
+    print(f"  May tinh  : http://localhost:5000")
+    print(f"  Dien thoai: http://{local_ip}:5000\n")
     app.run(debug=False, host='0.0.0.0', port=5000)
