@@ -26,6 +26,13 @@
       position: relative; overflow-x: hidden; color: var(--ink);
     }
 
+    /* custom background image (per device) */
+    #bgLayer {
+      position: fixed; inset: 0; z-index: -2;
+      background-size: cover; background-position: center; display: none;
+    }
+    body.has-bg #bgLayer { display: block; }
+
     /* hearts bg */
     #hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
     .heart { position: absolute; bottom: -60px; opacity: 0; animation: floatUp linear infinite; }
@@ -57,6 +64,12 @@
       font-size: .74rem; font-weight: 700; color: #fff; width: fit-content; letter-spacing:.2px;
     }
     .q-text { font-size: 1.2rem; line-height: 1.6; font-weight: 600; margin-top: 14px; }
+    .reroll {
+      background: none; border: none; cursor: pointer; margin-top: 10px;
+      color: var(--rose-dk); font-weight: 700; font-size: .82rem; padding: 4px 0;
+      display: inline-flex; align-items: center; gap: 5px; opacity: .85;
+    }
+    .reroll:active { opacity: .5; }
 
     /* answer area */
     textarea {
@@ -155,6 +168,7 @@
   </style>
 </head>
 <body>
+<div id="bgLayer"></div>
 <div id="hearts"></div>
 
 <div class="container">
@@ -163,7 +177,10 @@
       <b>❤️ For Our Relationship</b>
       <span id="brandSub">Câu hỏi mỗi ngày cho hai ta</span>
     </div>
-    <button class="me-chip" id="meChip" onclick="openSetup()">👤 <span id="meName">...</span></button>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="me-chip" onclick="openSettings()" aria-label="Tùy chỉnh">⚙️</button>
+      <button class="me-chip" id="meChip" onclick="openSetup()">👤 <span id="meName">...</span></button>
+    </div>
   </div>
 
   <!-- notification opt-in -->
@@ -182,6 +199,7 @@
       <div class="date-label" id="todayDate">Hôm nay</div>
       <div class="badge" id="todayBadge" style="margin-top:10px">...</div>
       <div class="q-text" id="todayQ">Đang tải câu hỏi hôm nay...</div>
+      <button class="reroll hidden" id="rerollBtn" onclick="newQuestion()">🔄 Đổi câu hỏi khác</button>
 
       <!-- answer input -->
       <div id="answerBox">
@@ -224,6 +242,19 @@
     </div>
     <input id="nameInput" type="text" placeholder="Tên của bạn (vd: Anh, Em, Linh...)" maxlength="30">
     <button class="btn btn-primary" style="margin-top:0" onclick="saveSetup()">Bắt đầu ❤️</button>
+  </div>
+</div>
+
+<!-- ===== SETTINGS MODAL ===== -->
+<div class="overlay" id="settingsModal">
+  <div class="modal">
+    <h2>Tùy chỉnh ⚙️</h2>
+    <p>Ảnh nền của app (chỉ lưu trên máy này).</p>
+    <label class="btn btn-ghost" for="bgInput" style="margin-bottom:10px">📷 Chọn ảnh nền</label>
+    <input id="bgInput" type="file" accept="image/*" onchange="onBgPick(event)" style="display:none">
+    <button class="btn btn-ghost" id="clearBgBtn" onclick="clearBg()" style="margin-bottom:18px">🗑️ Xóa ảnh nền</button>
+    <button class="btn btn-ghost" onclick="closeSettings(); openSetup();" style="margin-bottom:10px">👤 Đổi tên / vai</button>
+    <button class="btn btn-primary" style="margin-top:4px" onclick="closeSettings()">Xong</button>
   </div>
 </div>
 
@@ -317,6 +348,8 @@
     const waitNote=document.getElementById('waitNote');
     const revealBtn=document.getElementById('revealBtn');
     const revealBlock=document.getElementById('revealBlock');
+    // "đổi câu" chỉ hiện khi chưa mở (reveal)
+    document.getElementById('rerollBtn').classList.toggle('hidden', d.revealed);
 
     statusRow.innerHTML = ['p1','p2'].map(p=>{
       const done=d[p+'_done'];
@@ -358,6 +391,62 @@
   async function doReveal(){
     const r=await fetch('/api/reveal',{method:'POST'});
     if(r.ok){ todayData=await r.json(); renderToday(); }
+  }
+
+  async function newQuestion(){
+    const msg = (todayData && (todayData.p1_done || todayData.p2_done))
+      ? 'Đổi sang câu hỏi khác? Câu trả lời hôm nay của cả hai sẽ bị xóa.'
+      : 'Đổi sang một câu hỏi khác cho hôm nay?';
+    if(!confirm(msg)) return;
+    const r=await fetch('/api/new-question',{method:'POST'});
+    if(r.ok){
+      todayData=await r.json();
+      document.getElementById('answerText').value='';
+      renderToday();
+    } else {
+      const e=await r.json(); alert(e.error||'Không đổi được câu hỏi.');
+    }
+  }
+
+  // ── settings + background ──
+  function openSettings(){
+    document.getElementById('clearBgBtn').style.display = localStorage.getItem('for_bg') ? '' : 'none';
+    document.getElementById('settingsModal').classList.add('show');
+  }
+  function closeSettings(){ document.getElementById('settingsModal').classList.remove('show'); }
+
+  function applyBg(dataUrl){
+    const layer=document.getElementById('bgLayer');
+    layer.style.backgroundImage =
+      `linear-gradient(155deg, rgba(255,154,158,.55), rgba(255,236,210,.62)), url(${dataUrl})`;
+    document.body.classList.add('has-bg');
+  }
+  function clearBg(){
+    localStorage.removeItem('for_bg');
+    document.body.classList.remove('has-bg');
+    document.getElementById('bgLayer').style.backgroundImage='';
+    document.getElementById('clearBgBtn').style.display='none';
+  }
+  function onBgPick(e){
+    const file=e.target.files && e.target.files[0]; if(!file) return;
+    const reader=new FileReader();
+    reader.onload=()=>{
+      const img=new Image();
+      img.onload=()=>{
+        const max=1280; let w=img.width, h=img.height;
+        if(w>max){ h=Math.round(h*max/w); w=max; }
+        const c=document.createElement('canvas'); c.width=w; c.height=h;
+        c.getContext('2d').drawImage(img,0,0,w,h);
+        const data=c.toDataURL('image/jpeg',0.82);
+        try{
+          localStorage.setItem('for_bg', data);
+          applyBg(data);
+          document.getElementById('clearBgBtn').style.display='';
+        }catch(err){ alert('Ảnh quá lớn, thử chọn ảnh nhỏ hơn nhé.'); }
+      };
+      img.src=reader.result;
+    };
+    reader.readAsDataURL(file);
   }
 
   // ── history ──
@@ -446,6 +535,8 @@
   }
 
   // ── init ──
+  const savedBg = localStorage.getItem('for_bg');
+  if(savedBg) applyBg(savedBg);
   registerSW();
   if(!ROLE){ openSetup(); }
   else {
