@@ -368,6 +368,377 @@ QUESTIONS = [
      "text": "Nếu hai ta là một cặp nhân vật trong phim hay truyện, đó sẽ là ai?"},
     {"id": 147, "category": "Kỳ quặc & Thú vị", "emoji": "🦄",
      "text": "Điều 'dở hơi' nào ở tôi mà bạn sẽ nhớ nếu một ngày nó biến mất?"},
+
+    # ============ BỘ MỞ RỘNG LỚN (ID 151–500) ============
+    # --- Tình yêu & Mối quan hệ (151–225) ---
+    {"id": 151, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Khoảnh khắc nào trong tuần này khiến bạn thấy biết ơn vì có tôi?"},
+    {"id": 152, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Tôi làm điều gì khiến bạn cảm thấy được trân trọng nhất?"},
+    {"id": 153, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có cử chỉ yêu thương nào của tôi mà bạn mong nhận được thường xuyên hơn?"},
+    {"id": 154, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn thích được tôi ôm vào lúc nào nhất trong ngày?"},
+    {"id": 155, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì ở nụ cười của tôi khiến bạn chú ý?"},
+    {"id": 156, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Khi bạn buồn, bạn muốn tôi ở bên im lặng hay trò chuyện?"},
+    {"id": 157, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Lần gần nhất tôi khiến bạn bất ngờ là vì điều gì?"},
+    {"id": 158, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn nghĩ tình yêu của chúng ta đã 'lớn lên' như thế nào theo thời gian?"},
+    {"id": 159, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có câu nói nào của tôi mà bạn luôn muốn nghe lại?"},
+    {"id": 160, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn cảm thấy gần gũi với tôi nhất khi chúng ta làm gì cùng nhau?"},
+    {"id": 161, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì khiến bạn tin rằng tôi thực sự hiểu bạn?"},
+    {"id": 162, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn chúng ta dành buổi tối bên nhau khác đi như thế nào?"},
+    {"id": 163, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có thói quen chung nào của hai ta mà bạn rất trân trọng?"},
+    {"id": 164, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Khi tôi mệt mỏi, bạn nhận ra qua dấu hiệu nào?"},
+    {"id": 165, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn được tôi khen về điều gì nhiều hơn?"},
+    {"id": 166, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều nhỏ nào tôi từng làm mà bạn vẫn nhớ đến giờ?"},
+    {"id": 167, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn thấy chúng ta hợp nhau nhất ở điểm nào?"},
+    {"id": 168, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Khác biệt nào giữa hai ta mà bạn thấy lại bổ sung cho nhau?"},
+    {"id": 169, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn chúng ta cùng nhau 'tắt điện thoại' để làm gì?"},
+    {"id": 170, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có điều gì bạn chưa từng cảm ơn tôi nhưng luôn ghi nhớ?"},
+    {"id": 171, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn tôi chủ động hơn trong việc gì?"},
+    {"id": 172, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì khiến bạn cảm thấy chúng ta là một 'đội'?"},
+    {"id": 173, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn nhớ nhất điều gì về lần hẹn hò đầu tiên của chúng ta?"},
+    {"id": 174, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Nếu phải nhắc tôi một điều mỗi sáng, bạn muốn nhắc gì?"},
+    {"id": 175, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn chúng ta nói lời yêu theo cách nào khác ngoài lời nói?"},
+    {"id": 176, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có giai đoạn nào của chúng ta bạn muốn sống lại không?"},
+    {"id": 177, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn cảm thấy được yêu khi tôi nhớ những điều nhỏ nào về bạn?"},
+    {"id": 178, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì ở cách tôi quan tâm bạn mà bạn thích nhất?"},
+    {"id": 179, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn chúng ta cùng tạo thói quen mới nào cho tình cảm?"},
+    {"id": 180, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Khi xa nhau cả ngày, điều đầu tiên bạn muốn kể cho tôi là gì?"},
+    {"id": 181, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn nghĩ điều gì giữ cho tình yêu lâu dài không nhàm chán?"},
+    {"id": 182, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có 'ngôn ngữ riêng' nào giữa hai ta mà bạn yêu thích?"},
+    {"id": 183, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn tôi lắng nghe bạn nhiều hơn về chủ đề gì?"},
+    {"id": 184, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì khiến bạn yên tâm rằng chúng ta sẽ ổn dù khó khăn?"},
+    {"id": 185, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn thích bản thân mình hơn ở điểm nào khi ở bên tôi?"},
+    {"id": 186, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có điều gì bạn muốn chúng ta tha thứ cho nhau và bỏ lại phía sau?"},
+    {"id": 187, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn kỷ niệm những ngày đặc biệt của chúng ta như thế nào?"},
+    {"id": 188, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Tôi có thói quen nào khiến bạn thấy được yêu mà tôi không để ý?"},
+    {"id": 189, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn chúng ta dành nhiều thời gian hơn cho điều gì?"},
+    {"id": 190, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì ở tôi khiến bạn thấy tự hào khi giới thiệu với người khác?"},
+    {"id": 191, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn tôi thể hiện sự ủng hộ khi bạn thất bại như thế nào?"},
+    {"id": 192, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có khoảnh khắc đời thường nào bên tôi khiến bạn thấy hạnh phúc bất ngờ?"},
+    {"id": 193, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn nghĩ chúng ta nên 'làm mới' tình cảm bằng cách nào?"},
+    {"id": 194, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì khiến bạn cảm thấy được tôi ưu tiên hơn mọi thứ khác?"},
+    {"id": 195, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn nghe tôi xin lỗi theo cách nào để thực sự thấy được?"},
+    {"id": 196, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có nỗi sợ nào về tình yêu mà bạn muốn tôi giúp xua tan?"},
+    {"id": 197, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn thấy chúng ta giao tiếp tốt nhất vào lúc nào?"},
+    {"id": 198, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn học được điều gì về yêu thương từ chính tôi?"},
+    {"id": 199, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn chúng ta cùng đặt ra 'luật chơi' nào để yêu nhau bền hơn?"},
+    {"id": 200, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Nếu viết một dòng tựa cho chuyện tình của chúng ta, bạn viết gì?"},
+    {"id": 201, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn thấy tôi thay đổi tốt lên ở điểm nào kể từ khi yêu nhau?"},
+    {"id": 202, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có điều gì bạn muốn nói 'cảm ơn' với tôi ngay bây giờ?"},
+    {"id": 203, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn được an ủi thế nào sau một ngày tồi tệ?"},
+    {"id": 204, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì khiến bạn cảm thấy chúng ta vẫn đang 'tán tỉnh' nhau?"},
+    {"id": 205, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn thích nhất khoảnh khắc nào khi thức dậy bên tôi?"},
+    {"id": 206, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có bài hát hay bộ phim nào khiến bạn nghĩ đến chúng ta?"},
+    {"id": 207, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn chúng ta cùng vượt qua tính xấu nào của nhau?"},
+    {"id": 208, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì ở tôi làm bạn cảm thấy được che chở?"},
+    {"id": 209, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn tôi hỏi thăm bạn về điều gì thường xuyên hơn?"},
+    {"id": 210, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có giấc mơ chung nào bạn muốn nhắc tôi đừng quên?"},
+    {"id": 211, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn cảm thấy được tôn trọng nhất khi tôi làm gì?"},
+    {"id": 212, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì khiến bạn muốn ôm tôi thật chặt?"},
+    {"id": 213, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn chúng ta chia sẻ với nhau nhiều hơn về điều gì?"},
+    {"id": 214, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có thử thách nào bạn nghĩ sẽ khiến chúng ta mạnh mẽ hơn?"},
+    {"id": 215, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn thấy mình may mắn vì điều gì ở tôi?"},
+    {"id": 216, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì ở tôi bạn mong tôi đừng bao giờ thay đổi?"},
+    {"id": 217, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn chúng ta cùng nhau 'chậm lại' để tận hưởng điều gì?"},
+    {"id": 218, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có lời hứa nào bạn muốn chúng ta giữ cho nhau?"},
+    {"id": 219, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn thấy tình yêu của chúng ta đặc biệt ở chỗ nào?"},
+    {"id": 220, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì khiến một ngày bình thường bên tôi trở nên đáng nhớ?"},
+    {"id": 221, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn tôi nhớ điều gì về bạn khi bạn không vui?"},
+    {"id": 222, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Có cách nào tôi có thể khiến bạn cười mỗi ngày không?"},
+    {"id": 223, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Bạn muốn chúng ta cùng nhau biết ơn điều gì mỗi tối?"},
+    {"id": 224, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Điều gì ở mối quan hệ này khiến bạn muốn cố gắng hơn mỗi ngày?"},
+    {"id": 225, "category": "Tình yêu & Mối quan hệ", "emoji": "❤️", "text": "Nếu được gửi một tin nhắn cho tôi của một năm trước, bạn nhắn gì?"},
+
+    # --- Sợ hãi & Dễ tổn thương (226–260) ---
+    {"id": 226, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Có nỗi sợ nào từ tuổi thơ vẫn ảnh hưởng đến bạn đến giờ?"},
+    {"id": 227, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Khi nào bạn cảm thấy cô đơn ngay cả khi ở cạnh người khác?"},
+    {"id": 228, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Điều gì khiến bạn khó nói ra câu 'mình cần giúp đỡ'?"},
+    {"id": 229, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn sợ người khác nhìn thấy phần nào ở mình nhất?"},
+    {"id": 230, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Có ký ức nào khiến bạn tổn thương mà chưa kể với ai?"},
+    {"id": 231, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Khi buồn, bạn có xu hướng thu mình hay tìm người chia sẻ?"},
+    {"id": 232, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Điều gì khiến bạn cảm thấy bị phán xét?"},
+    {"id": 233, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn sợ đánh mất điều gì nhất trong cuộc sống?"},
+    {"id": 234, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Có áp lực vô hình nào bạn đang gánh mà ít ai biết?"},
+    {"id": 235, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Khi thất bại, bạn thường tự nói với mình điều gì?"},
+    {"id": 236, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Điều gì khiến bạn cảm thấy không an toàn?"},
+    {"id": 237, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn từng giả vờ ổn trong khi không ổn vì lý do gì?"},
+    {"id": 238, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Có lời nói nào trong quá khứ vẫn còn làm bạn đau?"},
+    {"id": 239, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn có sợ trở nên giống ai đó không? Vì sao?"},
+    {"id": 240, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Điều gì bạn ước người khác hiểu về nỗi buồn của bạn?"},
+    {"id": 241, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Khi lo lắng, cơ thể bạn phản ứng thế nào?"},
+    {"id": 242, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn khó tha thứ cho bản thân vì điều gì?"},
+    {"id": 243, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Có quyết định nào bạn đang sợ phải đối mặt?"},
+    {"id": 244, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn cảm thấy dễ tổn thương nhất khi ai đó làm gì?"},
+    {"id": 245, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Điều gì khiến bạn muốn bỏ cuộc, và điều gì giữ bạn lại?"},
+    {"id": 246, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn sợ bị hiểu lầm về điều gì nhất?"},
+    {"id": 247, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Có phần nào trong quá khứ bạn muốn được chữa lành?"},
+    {"id": 248, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn thường che giấu cảm xúc bằng cách nào?"},
+    {"id": 249, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Điều gì khiến bạn cảm thấy nhỏ bé?"},
+    {"id": 250, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn cần nghe điều gì khi đang yếu lòng?"},
+    {"id": 251, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Có nỗi sợ nào bạn biết là vô lý nhưng vẫn không bỏ được?"},
+    {"id": 252, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn sợ tương lai ở điểm nào nhất?"},
+    {"id": 253, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Khi bị tổn thương, bạn mất bao lâu để mở lòng lại?"},
+    {"id": 254, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Điều gì khiến bạn cảm thấy bị bỏ rơi?"},
+    {"id": 255, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn từng hối hận vì đã không nói ra điều gì?"},
+    {"id": 256, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Có giấc mơ nào bạn sợ theo đuổi vì sợ thất bại?"},
+    {"id": 257, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn cảm thấy áp lực phải hoàn hảo trong việc gì?"},
+    {"id": 258, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Điều gì khiến bạn khó tin tưởng người khác?"},
+    {"id": 259, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Bạn sợ mình đang dần trở nên thế nào?"},
+    {"id": 260, "category": "Sợ hãi & Dễ tổn thương", "emoji": "🌿", "text": "Có điều gì bạn cần buông bỏ nhưng vẫn đang níu giữ?"},
+
+    # --- Mơ ước & Tương lai (261–300) ---
+    {"id": 261, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn 5 năm tới mình sống ở đâu?"},
+    {"id": 262, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Có kỹ năng nào bạn mơ được thành thạo?"},
+    {"id": 263, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn hình dung 'thành công' của mình ở tuổi 50 thế nào?"},
+    {"id": 264, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Nơi nào bạn nhất định phải đặt chân đến một lần trong đời?"},
+    {"id": 265, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn nghỉ hưu theo kiểu gì?"},
+    {"id": 266, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Có ngành nghề nào bạn ước được thử nếu làm lại từ đầu?"},
+    {"id": 267, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn để lại dấu ấn gì cho thế giới?"},
+    {"id": 268, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Giấc mơ lớn nhất bạn chưa dám nói với ai là gì?"},
+    {"id": 269, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn học ngôn ngữ hay nhạc cụ nào?"},
+    {"id": 270, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Nếu có một năm tự do hoàn toàn, bạn sẽ làm gì?"},
+    {"id": 271, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn sức khỏe của mình ra sao trong 10 năm tới?"},
+    {"id": 272, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Có nơi nào bạn mơ được sống thử một thời gian?"},
+    {"id": 273, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn tạo ra điều gì khiến mình tự hào?"},
+    {"id": 274, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Mục tiêu nào năm nay bạn quyết tâm đạt được?"},
+    {"id": 275, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn xây dựng thói quen tốt nào trong tương lai?"},
+    {"id": 276, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Nếu mở một việc kinh doanh, đó sẽ là gì?"},
+    {"id": 277, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn dành tiền tiết kiệm cho ước mơ nào?"},
+    {"id": 278, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Có trải nghiệm phiêu lưu nào trong danh sách của bạn?"},
+    {"id": 279, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn trở thành hình mẫu cho ai?"},
+    {"id": 280, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "10 năm nữa bạn muốn người ta nhớ đến mình vì điều gì?"},
+    {"id": 281, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn cuối tuần lý tưởng trong tương lai trông thế nào?"},
+    {"id": 282, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Có dự án sáng tạo nào bạn muốn hoàn thành?"},
+    {"id": 283, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn cải thiện mối quan hệ nào trong tương lai?"},
+    {"id": 284, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Nếu viết sách về đời mình, chương tiếp theo tên là gì?"},
+    {"id": 285, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn mơ về một ngôi nhà như thế nào?"},
+    {"id": 286, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Có thử thách thể chất nào bạn muốn chinh phục?"},
+    {"id": 287, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn về già vẫn giữ được điều gì ở bản thân?"},
+    {"id": 288, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Giấc mơ nào hồi nhỏ bạn vẫn muốn theo đuổi?"},
+    {"id": 289, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn dành nhiều thời gian hơn cho ai trong tương lai?"},
+    {"id": 290, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Nếu được sống ở bất kỳ thành phố nào, bạn chọn đâu?"},
+    {"id": 291, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn tài chính của mình ổn định đến mức nào?"},
+    {"id": 292, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Có điều gì bạn muốn thử dù người khác cho là điên rồ?"},
+    {"id": 293, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn sự nghiệp của mình phát triển theo hướng nào?"},
+    {"id": 294, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Điều gì sẽ khiến bạn nói 'cuộc đời thật trọn vẹn'?"},
+    {"id": 295, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn dành phần đời còn lại để theo đuổi điều gì?"},
+    {"id": 296, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Có truyền thống nào bạn muốn duy trì suốt đời?"},
+    {"id": 297, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn trở nên giỏi hơn ở lĩnh vực nào?"},
+    {"id": 298, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Nếu thời gian không là vấn đề, bạn sẽ học gì?"},
+    {"id": 299, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Bạn muốn một năm nữa nhìn lại và tự hào về điều gì?"},
+    {"id": 300, "category": "Mơ ước & Tương lai", "emoji": "✨", "text": "Ước mơ nào bạn nghĩ chỉ cần một bước nữa là chạm tới?"},
+
+    # --- Giá trị & Niềm tin (301–330) ---
+    {"id": 301, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Điều gì bạn coi là 'không thể mua được bằng tiền'?"},
+    {"id": 302, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn ngưỡng mộ phẩm chất nào ở người khác nhất?"},
+    {"id": 303, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Một cuộc sống 'đủ' với bạn là như thế nào?"},
+    {"id": 304, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn tin vào số phận hay tin mình tự định đoạt?"},
+    {"id": 305, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Điều gì khiến bạn mất lòng tin vào một người?"},
+    {"id": 306, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn nghĩ điều gì làm nên một con người tử tế?"},
+    {"id": 307, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Quy tắc sống nào bạn luôn tuân theo?"},
+    {"id": 308, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn đánh giá cao sự trung thực hay sự khéo léo hơn?"},
+    {"id": 309, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Điều gì bạn nghĩ thế hệ trẻ đang dần đánh mất?"},
+    {"id": 310, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn định nghĩa tự do là gì?"},
+    {"id": 311, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Có niềm tin nào của bạn đã thay đổi khi trưởng thành?"},
+    {"id": 312, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn nghĩ tiền bạc và hạnh phúc liên quan với nhau thế nào?"},
+    {"id": 313, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Điều gì khiến bạn tôn trọng một người ngay lập tức?"},
+    {"id": 314, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn nghĩ điều gì là quan trọng để truyền lại cho đời sau?"},
+    {"id": 315, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Công bằng với bạn có nghĩa là gì?"},
+    {"id": 316, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn sẵn sàng hi sinh điều gì vì điều mình tin?"},
+    {"id": 317, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Điều gì bạn nghĩ là thước đo của một đời sống tốt?"},
+    {"id": 318, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn coi trọng trải nghiệm hay vật chất hơn?"},
+    {"id": 319, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Có câu nói hay triết lý nào bạn lấy làm kim chỉ nam?"},
+    {"id": 320, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn nghĩ tha thứ là sức mạnh hay sự yếu đuối?"},
+    {"id": 321, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Điều gì bạn không bao giờ thỏa hiệp về mặt đạo đức?"},
+    {"id": 322, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn có tin vào 'nhân quả' không?"},
+    {"id": 323, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Điều gì khiến bạn cảm thấy cuộc sống có ý nghĩa?"},
+    {"id": 324, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Theo bạn, thành công và hạnh phúc, cái nào quan trọng hơn?"},
+    {"id": 325, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Có giá trị nào từ cha mẹ mà bạn muốn giữ lại?"},
+    {"id": 326, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn nghĩ điều gì khiến một mối quan hệ bền vững?"},
+    {"id": 327, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn coi trọng lý trí hay cảm xúc khi quyết định?"},
+    {"id": 328, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Điều gì bạn nghĩ mọi người nên thử ít nhất một lần?"},
+    {"id": 329, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Bạn tin con người vốn thiện hay phải học để tốt?"},
+    {"id": 330, "category": "Giá trị & Niềm tin", "emoji": "🌟", "text": "Điều gì khiến bạn thấy biết ơn nhất trong đời?"},
+
+    # --- Ký ức & Quá khứ (331–360) ---
+    {"id": 331, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Mùi hương nào đưa bạn về tuổi thơ?"},
+    {"id": 332, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Món ăn nào gợi nhớ nhà nhất với bạn?"},
+    {"id": 333, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Trò chơi nào bạn mê nhất hồi nhỏ?"},
+    {"id": 334, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Kỳ nghỉ hè đáng nhớ nhất của bạn là gì?"},
+    {"id": 335, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Bạn từng thần tượng ai khi còn bé?"},
+    {"id": 336, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Có thầy cô nào để lại dấu ấn lớn trong bạn?"},
+    {"id": 337, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Kỷ niệm vui nhất thời đi học của bạn là gì?"},
+    {"id": 338, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Bạn từng ước mơ làm nghề gì khi còn nhỏ?"},
+    {"id": 339, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Có người bạn thời thơ ấu nào bạn vẫn nhớ?"},
+    {"id": 340, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Lần đầu tiên bạn thấy mình 'đã lớn' là khi nào?"},
+    {"id": 341, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Bạn từng làm điều gì khiến bố mẹ tự hào?"},
+    {"id": 342, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Có nơi chốn nào trong quá khứ bạn muốn ghé lại?"},
+    {"id": 343, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Bài hát nào gắn với một giai đoạn của đời bạn?"},
+    {"id": 344, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Bạn nhớ nhất điều gì về ông bà mình?"},
+    {"id": 345, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Kỷ niệm gia đình nào khiến bạn cười mỗi khi nhớ lại?"},
+    {"id": 346, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Có quyết định nào hồi trẻ đã thay đổi đời bạn?"},
+    {"id": 347, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Bạn từng vượt qua nỗi sợ nào đáng nhớ?"},
+    {"id": 348, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Món quà nào bạn nhớ nhất từng được tặng?"},
+    {"id": 349, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Có khoảnh khắc nào bạn ước quay lại để nói lời cảm ơn?"},
+    {"id": 350, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Bạn nhớ điều gì về ngôi nhà tuổi thơ?"},
+    {"id": 351, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Lần đầu xa nhà bạn cảm thấy thế nào?"},
+    {"id": 352, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Có thất bại nào hồi trẻ giờ bạn thấy biết ơn?"},
+    {"id": 353, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Bạn từng có 'mối tình thầm' nào không?"},
+    {"id": 354, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Kỷ niệm nào về một mùa Tết khiến bạn ấm lòng?"},
+    {"id": 355, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Bạn học được bài học lớn nào từ một sai lầm cũ?"},
+    {"id": 356, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Có cuốn sách hay bộ phim thời trẻ nào ảnh hưởng đến bạn?"},
+    {"id": 357, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Bạn nhớ cảm giác nào của tuổi mới lớn nhất?"},
+    {"id": 358, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Lần đầu tự kiếm được tiền bạn đã làm gì?"},
+    {"id": 359, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Có lời khuyên nào hồi xưa giờ bạn mới thấy đúng?"},
+    {"id": 360, "category": "Ký ức & Quá khứ", "emoji": "💭", "text": "Khoảnh khắc nào khiến bạn trưởng thành nhanh nhất?"},
+
+    # --- Gia đình & Bạn bè (361–385) ---
+    {"id": 361, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Truyền thống gia đình nào bạn yêu thích nhất?"},
+    {"id": 362, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn giống bố hay mẹ nhiều hơn, ở điểm gì?"},
+    {"id": 363, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Có điều gì bạn muốn nói với bố mẹ mà chưa nói được?"},
+    {"id": 364, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Người thân nào bạn muốn gần gũi hơn?"},
+    {"id": 365, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn học được điều gì quý giá từ ông bà?"},
+    {"id": 366, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Vai trò của bạn trong gia đình là gì?"},
+    {"id": 367, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn muốn xây dựng gia đình của mình khác đi như thế nào?"},
+    {"id": 368, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Người bạn nào hiểu bạn nhất, vì sao?"},
+    {"id": 369, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn trân trọng điều gì nhất ở những người bạn thân?"},
+    {"id": 370, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Có mâu thuẫn gia đình nào bạn mong được hàn gắn?"},
+    {"id": 371, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn thể hiện tình cảm với gia đình theo cách nào?"},
+    {"id": 372, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Ai là người bạn luôn gọi đầu tiên khi có chuyện?"},
+    {"id": 373, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn muốn con cái (nếu có) nhớ về mình như thế nào?"},
+    {"id": 374, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Có thói quen gia đình nào bạn muốn truyền lại?"},
+    {"id": 375, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn thấy tình bạn thay đổi thế nào khi trưởng thành?"},
+    {"id": 376, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Người nào ngoài gia đình mà bạn coi như người thân?"},
+    {"id": 377, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn muốn dành nhiều thời gian hơn cho ai?"},
+    {"id": 378, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Có lời xin lỗi nào bạn còn nợ ai đó không?"},
+    {"id": 379, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn ngưỡng mộ điều gì ở cách bố mẹ đối xử với nhau?"},
+    {"id": 380, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn muốn các dịp sum họp gia đình diễn ra thế nào?"},
+    {"id": 381, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Có người bạn cũ nào bạn muốn nối lại liên lạc?"},
+    {"id": 382, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn nghĩ điều gì tạo nên một tình bạn bền chặt?"},
+    {"id": 383, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn muốn được gia đình ủng hộ về điều gì hơn?"},
+    {"id": 384, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Vai trò 'người lớn' trong gia đình có khiến bạn áp lực không?"},
+    {"id": 385, "category": "Gia đình & Bạn bè", "emoji": "🏡", "text": "Bạn biết ơn ai nhất trong cuộc đời, vì điều gì?"},
+
+    # --- Cuộc sống hàng ngày (386–415) ---
+    {"id": 386, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Khoảnh khắc nào trong ngày bạn thấy bình yên nhất?"},
+    {"id": 387, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn thích buổi sáng hay buổi tối hơn?"},
+    {"id": 388, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Thức uống nào giúp bạn bắt đầu ngày mới?"},
+    {"id": 389, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn nạp lại năng lượng bằng cách nào?"},
+    {"id": 390, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Việc nhỏ nào có thể khiến bạn vui cả ngày?"},
+    {"id": 391, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn thích không gian sống gọn gàng hay thoải mái bừa bộn?"},
+    {"id": 392, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Có 'nghi thức' nào mỗi ngày mà bạn không thể thiếu?"},
+    {"id": 393, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn xử lý căng thẳng bằng cách nào?"},
+    {"id": 394, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bữa sáng lý tưởng của bạn là gì?"},
+    {"id": 395, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn thích làm việc trong yên tĩnh hay có nhạc?"},
+    {"id": 396, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Cuối ngày bạn thích thư giãn bằng cách nào?"},
+    {"id": 397, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Có thói quen nào giúp ích cho bạn mỗi ngày?"},
+    {"id": 398, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn thích cuối tuần năng động hay nghỉ ngơi?"},
+    {"id": 399, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Món ăn 'an ủi tâm hồn' của bạn là gì?"},
+    {"id": 400, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn thấy mình làm việc hiệu quả nhất vào lúc nào?"},
+    {"id": 401, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Có việc vặt nào bạn thấy thư giãn khi làm?"},
+    {"id": 402, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn thích vận động bằng cách nào nhất?"},
+    {"id": 403, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Một ngày nghỉ hoàn hảo của bạn diễn ra thế nào?"},
+    {"id": 404, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn dành thời gian rảnh cho điều gì nhiều nhất?"},
+    {"id": 405, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Có thói quen xấu nào bạn muốn thay đổi?"},
+    {"id": 406, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn thích nấu ăn hay được nấu cho?"},
+    {"id": 407, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Điều gì giúp giấc ngủ của bạn ngon hơn?"},
+    {"id": 408, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn thích sự ngẫu hứng hay có kế hoạch?"},
+    {"id": 409, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Có 'niềm vui nhỏ' nào bạn hay tự thưởng cho mình?"},
+    {"id": 410, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Ngày mưa bạn thích ở nhà hay ra ngoài?"},
+    {"id": 411, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Mùa nào trong năm bạn thích nhất, vì sao?"},
+    {"id": 412, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn bắt đầu ngày mới bằng việc gì đầu tiên?"},
+    {"id": 413, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Có bài hát nào bạn hay nghe khi làm việc?"},
+    {"id": 414, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Bạn thích trà, cà phê hay loại nước nào?"},
+    {"id": 415, "category": "Cuộc sống hàng ngày", "emoji": "☀️", "text": "Điều gì khiến một ngày bình thường trở nên đẹp đẽ?"},
+
+    # --- Tăng trưởng bản thân (416–440) ---
+    {"id": 416, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn đang cố gắng cải thiện điều gì ở bản thân?"},
+    {"id": 417, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Cuốn sách nào đã thay đổi cách bạn suy nghĩ?"},
+    {"id": 418, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn học tốt nhất qua cách nào?"},
+    {"id": 419, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Thói quen nào bạn tự hào vì đã xây dựng được?"},
+    {"id": 420, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn xử lý lời phê bình như thế nào?"},
+    {"id": 421, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Điều gì bạn từng nghĩ không làm được nhưng đã làm?"},
+    {"id": 422, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn muốn bớt sợ điều gì hơn?"},
+    {"id": 423, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Có kỹ năng mềm nào bạn muốn giỏi hơn?"},
+    {"id": 424, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn định nghĩa 'phiên bản tốt nhất của mình' thế nào?"},
+    {"id": 425, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Điều gì thúc đẩy bạn cố gắng mỗi ngày?"},
+    {"id": 426, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn học được gì từ thất bại gần đây nhất?"},
+    {"id": 427, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Có lời khuyên nào bạn muốn nói với bản thân 5 năm trước?"},
+    {"id": 428, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn muốn rèn luyện tính cách nào?"},
+    {"id": 429, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Điều gì khiến bạn cảm thấy mình đang tiến bộ?"},
+    {"id": 430, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn vượt qua sự trì hoãn bằng cách nào?"},
+    {"id": 431, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Có mục tiêu nào bạn đang âm thầm theo đuổi?"},
+    {"id": 432, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn muốn dành thời gian học gì cho bản thân?"},
+    {"id": 433, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Điều gì khiến bạn bước ra khỏi vùng an toàn gần đây?"},
+    {"id": 434, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn nghĩ điểm mạnh lớn nhất của mình là gì?"},
+    {"id": 435, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn muốn cải thiện cách quản lý cảm xúc thế nào?"},
+    {"id": 436, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Có thói quen nào bạn ngưỡng mộ ở người khác và muốn học?"},
+    {"id": 437, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn tự chăm sóc tinh thần mình bằng cách nào?"},
+    {"id": 438, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Điều gì khiến bạn cảm thấy tự tin hơn?"},
+    {"id": 439, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bạn muốn năm nay trở thành người như thế nào?"},
+    {"id": 440, "category": "Tăng trưởng bản thân", "emoji": "🚀", "text": "Bài học lớn nhất cuộc sống đã dạy bạn đến giờ là gì?"},
+
+    # --- Vui & Sáng tạo (441–480) ---
+    {"id": 441, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu được làm bất cứ nghề nào trong một ngày, bạn chọn nghề gì?"},
+    {"id": 442, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Siêu năng lực nào bạn muốn có nhất?"},
+    {"id": 443, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu trúng số, việc đầu tiên bạn làm là gì?"},
+    {"id": 444, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn muốn thử loại hình nghệ thuật nào?"},
+    {"id": 445, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu là một nhân vật hoạt hình, bạn sẽ là ai?"},
+    {"id": 446, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn muốn du hành thời gian về quá khứ hay tới tương lai?"},
+    {"id": 447, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu mở một quán, đó sẽ là quán gì?"},
+    {"id": 448, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn chọn sống ở biển hay trên núi?"},
+    {"id": 449, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu được gặp một người nổi tiếng, bạn chọn ai?"},
+    {"id": 450, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Món ăn nào bạn có thể ăn mãi không chán?"},
+    {"id": 451, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu là một loài cây, bạn sẽ là cây gì?"},
+    {"id": 452, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn muốn có tài lẻ nào để 'khoe'?"},
+    {"id": 453, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu được sống trong một bộ phim, bạn chọn phim nào?"},
+    {"id": 454, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn thích phiêu lưu hay nghỉ dưỡng khi đi du lịch?"},
+    {"id": 455, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu được đặt tên cho một hòn đảo, bạn đặt là gì?"},
+    {"id": 456, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn muốn thử món ăn lạ nào của thế giới?"},
+    {"id": 457, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu có robot làm một việc nhà, bạn chọn việc gì?"},
+    {"id": 458, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn muốn học điệu nhảy nào?"},
+    {"id": 459, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu viết một bài hát, nó sẽ nói về điều gì?"},
+    {"id": 460, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn thích trò chơi board game nào nhất?"},
+    {"id": 461, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu được sống một ngày là người khác, bạn chọn ai?"},
+    {"id": 462, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn muốn nuôi thú cưng gì, kể cả phi thực tế?"},
+    {"id": 463, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu mở một triển lãm về đời mình, sẽ có gì trong đó?"},
+    {"id": 464, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn thích bất ngờ hay tự lên kế hoạch cho niềm vui?"},
+    {"id": 465, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu có một điều ước (vui thôi), bạn ước gì?"},
+    {"id": 466, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn muốn thử môn thể thao mạo hiểm nào?"},
+    {"id": 467, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu là đầu bếp, món 'tủ' của bạn là gì?"},
+    {"id": 468, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn thích trang trí nhà theo phong cách nào?"},
+    {"id": 469, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu tổ chức một bữa tiệc trong mơ, nó sẽ thế nào?"},
+    {"id": 470, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn muốn học chơi nhạc cụ nào nhất?"},
+    {"id": 471, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu lập một câu lạc bộ, đó sẽ là về điều gì?"},
+    {"id": 472, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn thích chụp ảnh về chủ đề gì?"},
+    {"id": 473, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu có một ngày bí mật cho riêng mình, bạn làm gì?"},
+    {"id": 474, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn muốn sáng tạo điều gì nếu có khiếu nghệ thuật?"},
+    {"id": 475, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu làm MC một chương trình, đó sẽ là show gì?"},
+    {"id": 476, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn thích sưu tầm thứ gì?"},
+    {"id": 477, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu là một mùa trong năm, bạn là mùa nào?"},
+    {"id": 478, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn muốn thức dậy ở thành phố nào vào sáng mai?"},
+    {"id": 479, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Nếu chỉ được nghe một thể loại nhạc cả đời, bạn chọn gì?"},
+    {"id": 480, "category": "Vui & Sáng tạo", "emoji": "🎨", "text": "Bạn muốn để lại 'thông điệp vui' gì cho hậu thế?"},
+
+    # --- Kỳ quặc & Thú vị (481–500) ---
+    {"id": 481, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Bạn có nỗi sợ kỳ lạ nào không?"},
+    {"id": 482, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Thói quen 'khó hiểu' nào của bạn ít ai biết?"},
+    {"id": 483, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Bạn có mê tín điều gì buồn cười không?"},
+    {"id": 484, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Món ăn kết hợp kỳ lạ nào bạn thực sự thích?"},
+    {"id": 485, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Bạn từng tin điều ngớ ngẩn nào hồi nhỏ?"},
+    {"id": 486, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Có việc nhỏ nào khiến bạn 'khó chịu' một cách vô lý?"},
+    {"id": 487, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Bạn có hay nói chuyện với thú cưng hoặc đồ vật không?"},
+    {"id": 488, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Tài lẻ vô dụng nhưng vui nào bạn đang sở hữu?"},
+    {"id": 489, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Bạn có thói quen lạ nào khi căng thẳng không?"},
+    {"id": 490, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Nếu được đặt một luật buồn cười cho cả nước, đó là gì?"},
+    {"id": 491, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Bạn có 'thuyết' vui nào tin nửa đùa nửa thật?"},
+    {"id": 492, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Món đồ vô dụng nào bạn vẫn giữ vì một lý do lạ?"},
+    {"id": 493, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Bạn có cách ăn món nào 'khác người' không?"},
+    {"id": 494, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Điều kỳ quặc nào khiến bạn thấy thỏa mãn lạ thường?"},
+    {"id": 495, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Bạn từng làm điều gì 'dị' mà giờ thấy buồn cười?"},
+    {"id": 496, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Có câu cửa miệng nào bạn hay nói không?"},
+    {"id": 497, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Bạn có sắp xếp đồ đạc theo 'luật' kỳ lạ nào không?"},
+    {"id": 498, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Nếu một ngày mọi quy tắc bị đảo lộn, bạn sẽ làm gì?"},
+    {"id": 499, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Bạn có thói quen bí mật nào khi ở một mình?"},
+    {"id": 500, "category": "Kỳ quặc & Thú vị", "emoji": "🦄", "text": "Điều 'dở hơi' nào về bản thân khiến bạn thấy đáng yêu?"},
 ]
 
 
@@ -375,8 +746,9 @@ QUESTION_BY_ID = {q['id']: q for q in QUESTIONS}
 
 DEFAULT_STATE = {
     "partners": {"p1": "", "p2": ""},  # display names
-    "used_qids": [],                    # questions already used as daily question
-    "daily": {},                        # date -> {qid, answers:{p1,p2}, revealed}
+    "used_qids": [],                    # questions already shown (avoid repeats)
+    "current": None,                    # active round {date,qid,answers,revealed}
+    "history": [],                      # archived rounds [{date,qid,answers}]
     "asked": [],                        # legacy explore-mode marks
     "subs": {"p1": [], "p2": []},       # web-push subscriptions per partner
     "last_morning_sent": "",            # date the morning push was last sent
@@ -446,39 +818,75 @@ def today_str():
     return date.today().isoformat()
 
 
+def _make_round(state):
+    """Create a fresh round with a question not used recently."""
+    used = set(state['used_qids'])
+    pool = [q for q in QUESTIONS if q['id'] not in used]
+    if not pool:                          # all used -> recycle
+        state['used_qids'] = []
+        pool = QUESTIONS[:]
+    q = random.choice(pool)
+    state['used_qids'].append(q['id'])
+    return {"date": today_str(), "qid": q['id'],
+            "answers": {"p1": "", "p2": ""}, "revealed": False}
+
+
+def _archive(state, rnd):
+    """Move a completed (revealed, answered) round into history."""
+    if rnd and rnd.get('revealed') and any(rnd['answers'][p].strip() for p in ('p1', 'p2')):
+        state['history'].append({"date": rnd['date'], "qid": rnd['qid'],
+                                 "answers": rnd['answers']})
+
+
 def ensure_today_question(state):
-    """Pick a shared question for today if not already chosen."""
-    d = today_str()
-    if d not in state['daily']:
-        used = set(state['used_qids'])
-        pool = [q for q in QUESTIONS if q['id'] not in used]
-        if not pool:                      # all used -> recycle
-            state['used_qids'] = []
-            pool = QUESTIONS[:]
-        q = random.choice(pool)
-        state['daily'][d] = {"qid": q['id'], "answers": {"p1": "", "p2": ""}, "revealed": False}
-        state['used_qids'].append(q['id'])
+    """Return the active round, creating/rolling it over as needed.
+
+    - First ever use -> new round.
+    - New day -> archive the (revealed) previous round, start a fresh one
+      (this drives the daily morning question).
+    """
+    # one-time migration from the old per-day model
+    if state.get('daily'):
+        for d in sorted(state['daily'].keys()):
+            day = state['daily'][d]
+            if day.get('revealed'):
+                state['history'].append({"date": d, "qid": day['qid'],
+                                         "answers": day['answers']})
+        last = sorted(state['daily'].keys())[-1]
+        ld = state['daily'][last]
+        state['current'] = {"date": last, "qid": ld['qid'],
+                            "answers": ld['answers'], "revealed": ld['revealed']}
+        state['daily'] = {}
         save_state(state)
-    return state['daily'][d]
+
+    cur = state.get('current')
+    if not cur:
+        state['current'] = _make_round(state)
+        save_state(state)
+    elif cur['date'] != today_str():
+        _archive(state, cur)
+        state['current'] = _make_round(state)
+        save_state(state)
+    return state['current']
 
 
-def public_today(state, day):
-    """Build the today payload. Hide partner answers unless revealed."""
-    q = QUESTION_BY_ID[day['qid']]
-    p1_done = bool(day['answers']['p1'].strip())
-    p2_done = bool(day['answers']['p2'].strip())
-    both_done = p1_done and p2_done
+def public_today(state, rnd, who=None):
+    """Build the round payload. Hide partner answers unless revealed."""
+    q = QUESTION_BY_ID[rnd['qid']]
+    p1_done = bool(rnd['answers']['p1'].strip())
+    p2_done = bool(rnd['answers']['p2'].strip())
     payload = {
-        "date": today_str(),
+        "date": rnd['date'],
         "question": q,
         "p1_done": p1_done,
         "p2_done": p2_done,
-        "both_done": both_done,
-        "revealed": day['revealed'],
+        "both_done": p1_done and p2_done,
+        "revealed": rnd['revealed'],
         "partners": state['partners'],
+        "history_count": len(state.get('history', [])),
     }
-    if day['revealed']:
-        payload['answers'] = day['answers']
+    if rnd['revealed']:
+        payload['answers'] = rnd['answers']
     return payload
 
 
@@ -613,12 +1021,13 @@ def partners():
     return jsonify({"partners": state['partners']})
 
 
-# ── Daily question flow ──────────────────────────────────────────
+# ── Question flow ────────────────────────────────────────────────
 @app.route('/api/today')
 def today():
     state = load_state()
-    day = ensure_today_question(state)
-    return jsonify(public_today(state, day))
+    rnd = ensure_today_question(state)
+    who = request.args.get('who')
+    return jsonify(public_today(state, rnd, who))
 
 
 @app.route('/api/answer', methods=['POST'])
@@ -629,56 +1038,69 @@ def answer():
     if who not in ('p1', 'p2') or not text:
         return jsonify({"error": "thiếu thông tin"}), 400
     state = load_state()
-    day = ensure_today_question(state)
-    was_done = bool(day['answers'][who].strip())
-    day['answers'][who] = text
+    rnd = ensure_today_question(state)
+    was_done = bool(rnd['answers'][who].strip())
+    rnd['answers'][who] = text
     save_state(state)
 
     # Notify the other partner (only on first answer, not edits)
     if not was_done:
         other_role = 'p2' if who == 'p1' else 'p1'
         my_name = state['partners'].get(who) or ('Người 1' if who == 'p1' else 'Người 2')
-        if all(day['answers'][p].strip() for p in ('p1', 'p2')):
+        if all(rnd['answers'][p].strip() for p in ('p1', 'p2')):
             push_to_roles(state, [other_role], 'Cả hai đã trả lời! 🎉',
                           'Mở app để cùng xem câu trả lời của nhau nhé ❤️', '/')
         else:
             push_to_roles(state, [other_role], f'{my_name} đã trả lời 💌',
                           'Tới lượt bạn rồi! Mở app để trả lời nhé.', '/')
 
-    return jsonify(public_today(state, day))
+    return jsonify(public_today(state, rnd, who))
 
 
 @app.route('/api/reveal', methods=['POST'])
 def reveal():
     state = load_state()
-    day = ensure_today_question(state)
-    both = all(day['answers'][p].strip() for p in ('p1', 'p2'))
-    if not both:
+    rnd = ensure_today_question(state)
+    if not all(rnd['answers'][p].strip() for p in ('p1', 'p2')):
         return jsonify({"error": "Cả hai cần trả lời trước khi mở"}), 400
-    day['revealed'] = True
+    rnd['revealed'] = True
     save_state(state)
-    return jsonify(public_today(state, day))
+    return jsonify(public_today(state, rnd))
 
 
 @app.route('/api/new-question', methods=['POST'])
 def new_question():
-    """Swap today's question for a different one (clears today's answers)."""
+    """Swap the CURRENT question for another (before reveal); clears answers."""
     state = load_state()
-    d = today_str()
-    day = ensure_today_question(state)
-    if day['revealed']:
-        return jsonify({"error": "Câu hỏi hôm nay đã được mở, không thể đổi nữa"}), 400
-    current = day['qid']
+    rnd = ensure_today_question(state)
+    if rnd['revealed']:
+        return jsonify({"error": "Câu hỏi đã được mở, không thể đổi nữa"}), 400
+    cur_id = rnd['qid']
     used = set(state['used_qids'])
-    pool = [q for q in QUESTIONS if q['id'] not in used and q['id'] != current]
-    if not pool:                                  # all used -> any other question
-        pool = [q for q in QUESTIONS if q['id'] != current] or QUESTIONS[:]
+    pool = [q for q in QUESTIONS if q['id'] not in used and q['id'] != cur_id]
+    if not pool:
+        pool = [q for q in QUESTIONS if q['id'] != cur_id] or QUESTIONS[:]
     q = random.choice(pool)
-    state['daily'][d] = {"qid": q['id'], "answers": {"p1": "", "p2": ""}, "revealed": False}
     if q['id'] not in state['used_qids']:
         state['used_qids'].append(q['id'])
+    rnd['qid'] = q['id']
+    rnd['answers'] = {"p1": "", "p2": ""}
+    rnd['revealed'] = False
     save_state(state)
-    return jsonify(public_today(state, state['daily'][d]))
+    return jsonify(public_today(state, rnd))
+
+
+@app.route('/api/next', methods=['POST'])
+def next_question():
+    """After reveal: archive the round and start a brand-new one (same day)."""
+    state = load_state()
+    rnd = ensure_today_question(state)
+    if not rnd['revealed']:
+        return jsonify({"error": "Cần mở câu trả lời trước khi sang câu mới"}), 400
+    _archive(state, rnd)
+    state['current'] = _make_round(state)
+    save_state(state)
+    return jsonify(public_today(state, state['current']))
 
 
 # ── History ──────────────────────────────────────────────────────
@@ -686,17 +1108,11 @@ def new_question():
 def history():
     state = load_state()
     out = []
-    for d in sorted(state['daily'].keys(), reverse=True):
-        day = state['daily'][d]
-        if d == today_str() and not day['revealed']:
-            continue                       # don't leak today before reveal
-        if not day['revealed']:
+    for h in reversed(state.get('history', [])):
+        q = QUESTION_BY_ID.get(h['qid'])
+        if not q:
             continue
-        out.append({
-            "date": d,
-            "question": QUESTION_BY_ID[day['qid']],
-            "answers": day['answers'],
-        })
+        out.append({"date": h['date'], "question": q, "answers": h['answers']})
     return jsonify({"history": out, "partners": state['partners']})
 
 

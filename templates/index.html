@@ -216,6 +216,7 @@
 
       <!-- revealed answers -->
       <div class="ans-block hidden" id="revealBlock"></div>
+      <button class="btn btn-primary hidden" id="nextBtn" onclick="nextQuestion()">➡️ Câu hỏi tiếp theo</button>
     </div>
   </div>
 
@@ -329,7 +330,7 @@
 
   // ── today ──
   async function loadToday(){
-    const r=await fetch('/api/today'); todayData=await r.json();
+    const r=await fetch('/api/today?who='+encodeURIComponent(ROLE||'')); todayData=await r.json();
     renderToday();
     maybeMorning();
   }
@@ -348,8 +349,10 @@
     const waitNote=document.getElementById('waitNote');
     const revealBtn=document.getElementById('revealBtn');
     const revealBlock=document.getElementById('revealBlock');
+    const nextBtn=document.getElementById('nextBtn');
     // "đổi câu" chỉ hiện khi chưa mở (reveal)
     document.getElementById('rerollBtn').classList.toggle('hidden', d.revealed);
+    nextBtn.classList.add('hidden');
 
     statusRow.innerHTML = ['p1','p2'].map(p=>{
       const done=d[p+'_done'];
@@ -364,6 +367,7 @@
       revealBlock.innerHTML = ['p1','p2'].map(p=>
         `<div class="ans ${p}"><div class="who">${p==='p1'?'💙':'💗'} ${nameOf(p)}</div><div class="body">${escapeHtml(d.answers[p])}</div></div>`
       ).join('');
+      nextBtn.classList.remove('hidden');
       return;
     }
     if(!iDone){ box.classList.remove('hidden'); return; }
@@ -391,6 +395,18 @@
   async function doReveal(){
     const r=await fetch('/api/reveal',{method:'POST'});
     if(r.ok){ todayData=await r.json(); renderToday(); }
+  }
+
+  async function nextQuestion(){
+    const r=await fetch('/api/next',{method:'POST'});
+    if(r.ok){
+      todayData=await r.json();
+      document.getElementById('answerText').value='';
+      renderToday();
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      const e=await r.json(); alert(e.error||'Không sang được câu mới.');
+    }
   }
 
   async function newQuestion(){
